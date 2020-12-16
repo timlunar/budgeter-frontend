@@ -1,10 +1,11 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <Loader v-if="$store.state.isLoading"></Loader>
+    <template v-else>
+      <Navbar></Navbar>
+      <router-view />
+      <Footer></Footer>
+    </template>
   </div>
 </template>
 
@@ -12,25 +13,18 @@
 @import "~bootstrap/scss/bootstrap";
 @import "~bootstrap-vue/src/index.scss";
 @import "./assets/scss/index";
-
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
 </style>
+
+<style
+    rel="stylesheet"
+    src="../node_modules/vueperslides/dist/vueperslides.css"
+/>
+
+<script>
+import Navbar from "@/components/navbar/Navbar";
+import Footer from "@/components/Footer";
+import Loader from "@/components/gadgets/Loader";
+export default {
+  components: {Loader, Footer, Navbar}
+}
+</script>
