@@ -1,0 +1,13 @@
+.bt-functionalities {
+  margin: 10rem 0 0 0;
+  background-color: $promotion-user-names;
+  min-height: 600px;
+
+  &__title {
+    padding-top: 7rem;
+    color: #fafafa;
+    &-black{
+      color: #3f3f3f;
+    }
+  }
+}

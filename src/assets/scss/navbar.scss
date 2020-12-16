@@ -1,0 +1,14 @@
+header {
+  min-height: 70px;
+  background-color: #ffffff;
+  &::after {
+    border-bottom: 2px solid $promotion-user-names;
+    display: block;
+    margin: 0 auto;
+    width: 40%;
+    content: "";
+  }
+  a {
+    padding-left: 1rem;
+  }
+}
