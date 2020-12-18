@@ -10,6 +10,8 @@
       <slot :row="item">
         <td v-for="(column, index) in columns"
             :key="index">
+          <button id="deleteButton" class="btn btn-outline-danger m-0" @click="deleteLineItem(item)" v-if="column === 'delete'">Delete</button>
+          <button id="updateButton" class="btn btn-outline-success m-0" @click="updateLineItem(item.id)" v-else-if="column === 'update'">Update</button>
           {{itemValue(item, column)}}
         </td>
       </slot>
@@ -47,6 +49,14 @@ export default {
     },
     itemValue(item, column) {
       return item[column.toLowerCase()];
+    },
+    /* TODO --> MAKE API CALL AND UPDATE ITEM */
+    updateLineItem(id) {
+      console.log(id);
+    },
+    /* TODO --> MAKE API CALL AND DELETE ITEM */
+    deleteLineItem(id) {
+      console.log(id);
     }
   }
 };

@@ -44,6 +44,9 @@ export default {
       this.$store.dispatch('logout');
       return axios.post('https://arcane-castle-36997.herokuapp.com/api/logout').then();
     }
+  },
+  async mounted(){
+    await this.$store.dispatch('getUserApiData');
   }
 };
 </script>
