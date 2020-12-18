@@ -2,7 +2,15 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home";
 import Login from "../views/Login";
-import Dashboard from "@/views/Dashboard";
+import DashboardLayout from "@/layout/dashboard/DashboardLayout.vue";
+
+// Admin pages
+import Dashboard from "@/pages/Dashboard.vue";
+import UserProfile from "@/pages/UserProfile.vue";
+import Transactions from "@/pages/Transactions";
+import SpecialOffer from "@/pages/SpecialOffer";
+import Coupons from "@/pages/Coupons";
+import Categories from "@/pages/Categories";
 
 Vue.use(VueRouter);
 
@@ -18,10 +26,42 @@ const routes = [
     component: Login
   },
   {
-    path: "/dashboard",
-    name: "dashboard",
-    component: Dashboard,
-    meta: { requiresAuth: true }
+    path: "/",
+    component: DashboardLayout,
+    redirect: "/dashboard",
+    meta: { requiresAuth: true },
+    children: [
+      {
+        path: "dashboard",
+        name: "dashboard",
+        component: Dashboard
+      },
+      {
+        path: "user-profile",
+        name: "User Profile",
+        component: UserProfile
+      },
+      {
+        path: "categories",
+        name: "categories",
+        component: Categories
+      },
+      {
+        path: "coupons",
+        name: "coupons",
+        component: Coupons
+      },
+      {
+        path: "transactions",
+        name: "transactions",
+        component: Transactions
+      },
+      {
+        path: "special-offer",
+        name: "Special offer",
+        component: SpecialOffer
+      }
+    ]
   }
 ];
 

@@ -4,7 +4,6 @@
       <b-navbar-brand href="#">NavBar</b-navbar-brand>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
-        <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
           <router-link to="/" v-scroll-to="'#home'" class="nav-link">Home</router-link>
           <b-nav-item href="#"

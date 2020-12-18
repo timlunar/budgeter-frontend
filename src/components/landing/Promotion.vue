@@ -18,7 +18,7 @@
           <p class="green-text"><b>@Christy</b></p>
         </div>
       </div>
-      <div class="d-flex flex-column col-xl-3 col-12 mt-xl-0 mt-3 bt-promotion__card" data-aos="fade-left">
+      <div class="d-flex flex-column col-xl-3 col-12 mt-xl-0 mt-3 bt-promotion__card" data-aos="fade-up">
         <div class="pt-4 p-3">
           <img src="~@/assets/images/instagramIcon.png" class="bt-promotion__icons">
           <p>This app has turned me from someone who can't save money into someone who can.</p>
@@ -42,7 +42,7 @@
           <p class="green-text"><b>@Christy</b></p>
         </div>
       </div>
-      <div class="d-flex flex-column col-xl-3 col-12 mt-xl-0 mt-3 bt-promotion__card" data-aos="fade-left">
+      <div class="d-flex flex-column col-xl-3 col-12 mt-xl-0 mt-3 bt-promotion__card" data-aos="fade-down">
         <div class="pt-4 p-3">
           <img src="~@/assets/images/instagramIcon.png" class="bt-promotion__icons">
           <p>This app has turned me from someone who can't save money into someone who can.</p>

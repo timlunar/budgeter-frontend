@@ -17,7 +17,9 @@ import { faTwitter, faFacebook, faInstagram } from '@fortawesome/free-brands-svg
 library.add(faSpinner, faTwitter, faFacebook, faInstagram);
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
+import PaperDashboard from "./plugins/paperDashboard";
 
+Vue.use(PaperDashboard);
 
 import { VueperSlides, VueperSlide } from "vueperslides";
 Vue.component("vueper-slides", VueperSlides);

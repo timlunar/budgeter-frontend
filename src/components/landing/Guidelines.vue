@@ -18,7 +18,7 @@
           </div>
         </div>
       </div>
-      <div class="d-flex flex-column align-items-center col-xl-4 col-12 p-0 pt-xl-0 pt-5" data-aos="fade-left">
+      <div class="d-flex flex-column align-items-center col-xl-4 col-12 p-0 pt-xl-0 pt-5" data-aos="fade-down">
         <h1 class="bt-guidelines__underline">Useful</h1>
         <div class="d-flex flex-column align-items-center col-10 p-0">
           <div class="image" style="width: 330px; height: 270px;">
