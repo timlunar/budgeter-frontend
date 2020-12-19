@@ -3,7 +3,6 @@
     <side-bar>
       <template slot="links">
         <sidebar-link to="/dashboard" name="Dashboard" icon="ti-panel"/>
-        <sidebar-link to="/categories" name="Categories" icon="ti-pencil"/>
         <sidebar-link to="/special-offer" name="Special offers" icon="ti-gift"/>
         <sidebar-link to="/transactions" name="Transactions" icon="ti-wallet"/>
         <sidebar-link to="/coupons" name="Coupons" icon="ti-credit-card"/>
@@ -28,7 +27,7 @@
 <script>
 import TopNavbar from "./TopNavbar.vue";
 import DashboardContent from "./Content.vue";
-import axios from "axios";
+
 export default {
   components: {
     TopNavbar,
@@ -42,7 +41,7 @@ export default {
     },
     logout() {
       this.$store.dispatch('logout');
-      return axios.post('https://arcane-castle-36997.herokuapp.com/api/logout').then();
+      // return axios.post('https://arcane-castle-36997.herokuapp.com/api/logout').then();
     }
   },
   async mounted(){

@@ -28,7 +28,7 @@ Vue.component("vueper-slide", VueperSlide);
 Vue.use(VueScrollTo);
 
 Vue.use(BootstrapVue);
-// Vue.use(axios);
+//Vue.use(axios);
 Vue.config.productionTip = false;
 
 AOS.init({
@@ -60,6 +60,7 @@ new Vue({
     if(userString) {
       const userData = JSON.parse(userString)
       this.$store.commit('SET_USER_DATA', userData)
+      this.$router.push({name: 'dashboard'});
     }
     axios.interceptors.response.use(
         response => response,

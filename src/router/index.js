@@ -10,7 +10,6 @@ import UserProfile from "@/pages/UserProfile.vue";
 import Transactions from "@/pages/Transactions";
 import SpecialOffer from "@/pages/SpecialOffer";
 import Coupons from "@/pages/Coupons";
-import Categories from "@/pages/Categories";
 
 Vue.use(VueRouter);
 
@@ -40,11 +39,6 @@ const routes = [
         path: "user-profile",
         name: "User Profile",
         component: UserProfile
-      },
-      {
-        path: "categories",
-        name: "categories",
-        component: Categories
       },
       {
         path: "coupons",

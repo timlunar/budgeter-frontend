@@ -1,167 +1,107 @@
 <template>
- <div class="row">
-  <div class="col-md-12">
-    <card>
-      <template slot="header">
-        <h4 class="card-title">Paper Dashboard Headings</h4>
-        <p class="card-category">Created using
-          <a href="https://www.google.com/fonts/specimen/Muli">Muli</a> Font Family</p>
-      </template>
-      <div class="content">
-        <div class="typo-line">
-          <h1>
-            <p class="category">Header 1</p>Paper Dashboard Heading </h1>
-        </div>
-        <div class="typo-line">
-          <h2>
-            <p class="category">Header 2</p>Paper Dashboard Heading </h2>
-        </div>
-        <div class="typo-line">
-          <h3>
-            <p class="category">Header 3</p>Paper Dashboard Heading </h3>
-        </div>
-        <div class="typo-line">
-          <h4>
-            <p class="category">Header 4</p>Paper Dashboard Heading </h4>
-        </div>
-        <div class="typo-line">
-          <h5>
-            <p class="category">Header 5</p>Paper Dashboard Heading </h5>
-        </div>
-        <div class="typo-line">
-          <h6>
-            <p class="category">Header 6</p>Paper Dashboard Heading </h6>
-        </div>
-        <div class="typo-line">
-          <p>
-            <span class="category">Paragraph</span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam.
-          </p>
-        </div>
-        <div class="typo-line">
-          <p class="category">Quote</p>
-          <blockquote>
-            <p>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam.
-            </p>
-            <small>
-              Steve Jobs, CEO Apple
-            </small>
-          </blockquote>
-        </div>
-        <div class="typo-line">
-          <p class="category">Muted Text</p>
-          <p class="text-muted">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.
-          </p>
-        </div>
-        <div class="typo-line">
-          <!--
-               there are also "text-info", "text-success", "text-warning", "text-danger" clases for the text
-               -->
-          <p class="category">Coloured Text</p>
-          <p class="text-primary">
-            Text Primary - Light Bootstrap Table Heading and complex bootstrap dashboard you've ever seen on the internet.
-          </p>
-          <p class="text-info">
-            Text Info - Light Bootstrap Table Heading and complex bootstrap dashboard you've ever seen on the internet.
-          </p>
-          <p class="text-success">
-            Text Success - Light Bootstrap Table Heading and complex bootstrap dashboard you've ever seen on the internet.
-          </p>
-          <p class="text-warning">
-            Text Warning - Light Bootstrap Table Heading and complex bootstrap dashboard you've ever seen on the internet.
-          </p>
-          <p class="text-danger">
-            Text Danger - Light Bootstrap Table Heading and complex bootstrap dashboard you've ever seen on the internet.
-          </p>
-        </div>
-        <div class="typo-line">
-          <h2>
-            <p class="category">Small Tag</p>Header with small subtitle
-            <br>
-            <small>".small" is a tag for the headers</small>
-          </h2>
-        </div>
-        <div class="typo-line">
-          <p class="category">Lists</p>
-          <div class="row">
-            <div class="col-md-3">
-              <h5>Unordered List</h5>
-              <ul>
-                <li>List Item</li>
-                <li>List Item</li>
-                <li class="list-unstyled">
-                  <ul>
-                    <li>List Item</li>
-                    <li>List Item</li>
-                    <li>List Item</li>
-                  </ul>
-                </li>
-                <li>List Item</li>
-              </ul>
-            </div>
-            <div class="col-md-3">
-              <h5>Ordered List</h5>
-              <ol>
-                <li>List Item</li>
-                <li>List Item</li>
-                <li>List Item</li>
-              </ol>
-            </div>
-            <div class="col-md-3">
-              <h5>Unstyled List</h5>
-              <ul class="list-unstyled">
-                <li>List Item</li>
-                <li>List Item</li>
-                <li>List Item</li>
-              </ul>
-            </div>
-            <div class="col-md-3">
-              <h5>Inline List</h5>
-              <ul class="list-inline">
-                <li>List Item</li>
-                <li>List Item</li>
-                <li>List Item</li>
-              </ul>
-            </div>
+  <div class="row">
+    <div class="col-md-12">
+     <div class="col-12">
+       <card class="card-plain">
+         <div class="table-full-width table-responsive">
+           <paper-table type="hover" :title="table2.title" :sub-title="table2.subTitle" :data="table2.data" :columns="table2.columns" @deleteLine="deleteLine" @updateLine="updateTransaction"></paper-table>
+         </div>
+       </card>
+     </div>
+    </div>
+
+    <div class="d-flex flex-wrap col-md-12 p-0">
+      <div class="col-xl-6 col-12">
+        <div class="card card">
+          <div class="card-header">
+            <h5>Create new transaction</h5>
           </div>
-        </div>
-        <div class="typo-line">
-          <p class="category">Blockquotes</p>
-          <div class="row">
-            <div class="col-md-6">
-              <h5>Default Blockquote</h5>
-              <blockquote>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-              </blockquote>
+          <div class="d-flex flex-wrap card-body">
+            <div class="d-flex flex-column col-xl-6 col-12 p-3">
+              <label>Amount</label>
+              <input v-model="insertAmount" type="number" min="0" placeholder="Amount value">
             </div>
-            <div class="col-md-6">
-              <h5>Blockquote with Citation</h5>
-              <blockquote>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                <small>Someone famous in
-                  <cite title="Source Title">Source Title</cite>
-                </small>
-              </blockquote>
+
+            <div class="d-flex flex-column col-xl-6 col-12 p-3">
+              <label>Categories</label>
+              <select v-model="insertCategory" class="pt-1">
+                <option  v-for="index in $store.state.categoriesObject" :value="index.id" :key="index.id">{{ index.name }}</option>
+              </select>
             </div>
+
+            <div class="d-flex flex-column col-12 p-3">
+              <label>Description</label>
+              <input v-model="insertDescription" type="text" placeholder="Coupon description">
+            </div>
+
+            <div class="d-flex flex-column col-12 p-3">
+              <label for="expense">Expense</label>
+              <input type="checkbox" id="expense" v-model="insertExpense">
+            </div>
+
+            <button class="btn btn-outline-success mt-3 ml-3" @click="insertTransaction">Insert</button>
+            <button class="btn btn-outline-danger mt-3 ml-5" @click="clearTransactionInsert">Clear</button>
           </div>
-        </div>
-        <div class="typo-line">
-          <p class="category">Code</p>
-          <p>
-            This is
-            <code>.css-class-as-code</code>, an example of an inline code element. Wrap inline code within a
-            <code>
-              &lt;code&gt;...&lt;/code&gt;</code>tag.</p>
-          <pre>1. #This is an example of preformatted text. 2. #Here is another line of code</pre>
         </div>
       </div>
-    </card>
+      <!--<div class="col-xl-6 col-12">
+        <div class="card card">
+          <div class="card-header">
+            <h5>Edit transaction</h5>
+          </div>
+          <div class="d-flex flex-wrap card-body">
+            <div class="d-flex flex-column col-xl-6 col-12 p-3">
+              <label>Start date</label>
+              <input v-model="startDate" type="text" placeholder="Coupon start date">
+            </div>
+            <div class="d-flex flex-column col-xl-6 col-12 p-3">
+              <label>End date</label>
+              <input v-model="endDate" type="text" placeholder="Coupon end date">
+            </div>
+            <div class="d-flex flex-column col-12 p-3">
+              <label>Description</label>
+              <input v-model="description" type="text" placeholder="Coupon description">
+            </div>
+
+            <button class="btn btn-outline-success mt-3 ml-3" @click="updateLine">Update</button>
+            <button class="btn btn-outline-danger mt-3 ml-5" @click="clearCouponUpdate">Clear</button>
+          </div>
+        </div>
+      </div>-->
+    </div>
+
   </div>
- </div>
 </template>
 <script>
-export default {};
+import PaperTable from "@/components/PaperTable";
+const tableColumns = ["Id", "description", "amount", "expense", "category_id","delete", "update"];
+
+export default {
+  components: { PaperTable },
+  data() {
+    return {
+      insertAmount: 0,
+      insertCategory: 1,
+      insertDescription: "",
+      insertExpense: false,
+      table2: {
+        title: "Table on Plain Background",
+        subTitle: "Here is a subtitle for this table",
+        columns: [...tableColumns],
+        data: [...this.$store.state.userTransactions]
+      }
+    };
+  },
+  methods: {
+    /* TODO --> ALL THIS FUNCTIONS ARE FOR HANDLING THE FORM */
+    clearTransactionInsert(){},
+
+    /* TODO --> ALL THIS FUNCTIONS ARE FOR THE AXIOS REQUESTS */
+    async deleteLine() {},
+    async updateTransaction() {},
+    async insertTransaction() {}
+  }
+};
 </script>
 <style>
 </style>
