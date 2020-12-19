@@ -53,7 +53,7 @@ export default new Vuex.Store({
     }
     /* TODO --> PARSE SPECIAL OFFERS */
     // Parse_special_offers
-    
+
   },
   actions: {
     register({ commit }, credentials) {
