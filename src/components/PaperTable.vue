@@ -50,6 +50,10 @@ export default {
     itemValue(item, column) {
       if(column === "category_id")
         return this.$store.state.categoriesObject[item[column]].name;
+      else if(column === "expense")
+        return item[column].toString() === "0" ? "No" : "Yes";
+      else if(column === "amount")
+        return item[column] + " €";
       return item[column.toLowerCase()];
     }
   }

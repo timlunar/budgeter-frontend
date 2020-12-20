@@ -8,14 +8,16 @@
             <fg-input type="text"
                       label="Username"
                       placeholder="Username"
-                      v-model="user.username">
+                      v-model="user.username"
+                      disabled>
             </fg-input>
           </div>
           <div class="col-md-6">
             <fg-input type="email"
                       label="User Email"
                       placeholder="Email"
-                      v-model="user.email">
+                      v-model="user.email"
+                      disabled>
             </fg-input>
           </div>
         </div>
@@ -25,7 +27,8 @@
             <fg-input type="text"
                       label="First Name"
                       placeholder="First Name"
-                      v-model="user.firstName">
+                      v-model="user.firstName"
+                      disabled>
             </fg-input>
           </div>
         </div>
@@ -39,8 +42,8 @@ export default {
   data() {
     return {
       user: {
-        username:  this.$store.state.user.user.username,
-        email: this.$store.state.user.user.email ,
+        username: this.$store.state.user.user.username,
+        email: this.$store.state.user.user.email,
         firstName: this.$store.state.user.user.name,
         lastName: this.$store.state.user.user.lastName
       }

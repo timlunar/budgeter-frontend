@@ -11,6 +11,10 @@
           <a href="#">
             <small>@{{ $store.state.user.user.username }}</small>
           </a>
+          <br>
+          <a href="#">
+            <small>e: {{ $store.state.user.user.email }}</small>
+          </a>
         </h4>
       </div>
     </div>

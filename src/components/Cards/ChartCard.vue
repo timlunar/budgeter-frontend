@@ -19,10 +19,9 @@
           <slot name="legend"></slot>
         </div>
         <hr>
-        <div class="stats">
+        <div class="d-flex flex-wrap justify-content-between stats">
           <slot name="footer"></slot>
-        </div>
-        <div class="pull-right">
+          <slot name="date"></slot>
         </div>
       </div>
     </div>

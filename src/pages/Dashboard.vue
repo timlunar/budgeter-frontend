@@ -1,9 +1,8 @@
 <template>
   <div>
-
     <!--Stats cards-->
     <div class="row">
-      <div class="col-md-6 col-xl-3" v-for="stats in statsCards" :key="stats.title">
+      <div class="col-12 col-md-6 col-xl-3" v-for="stats in statsCards" :key="stats.title">
         <stats-card>
           <div class="icon-big text-center" :class="`icon-${stats.type}`" slot="header">
             <i :class="stats.icon"></i>
@@ -21,39 +20,19 @@
 
     <!--Charts-->
     <div class="row">
-
-      <div class="col-12">
-        <chart-card title="Users behavior"
-                    sub-title="24 Hours performance"
-                    :chart-data="usersChart.data"
-                    :chart-options="usersChart.options">
-          <span slot="footer">
-            <i class="ti-reload"></i> Updated 3 minutes ago
-          </span>
-          <div slot="legend">
-            <i class="fa fa-circle text-info"></i> Open
-            <i class="fa fa-circle text-danger"></i> Click
-            <i class="fa fa-circle text-warning"></i> Click Second Time
-          </div>
-        </chart-card>
-      </div>
-
-      <div class="col-md-6 col-12">
-        <chart-card title="Email Statistics"
-                    sub-title="Last campaign performance"
-                    :chart-data="preferencesChart.data"
+      <div class="col-xl-6 col-12">
+        <chart-card title="Categories statistics"
+                    sub-title="Statistics of the categories used"
+                    :chart-data="drawPieChart"
                     chart-type="Pie">
           <span slot="footer">
-            <i class="ti-timer"></i> Campaign set 2 days ago</span>
-          <div slot="legend">
-            <i class="fa fa-circle text-info"></i> Open
-            <i class="fa fa-circle text-danger"></i> Bounce
-            <i class="fa fa-circle text-warning"></i> Unsubscribe
-          </div>
+            <i class="ti-user"></i>{{ $store.state.user.user.name }}</span>
+          <span slot="date">
+            <i class="ti-alarm-clock"></i>{{ new Date().toISOString().slice(0, 20).replace(".", "").split("T")[0] }}</span>
         </chart-card>
       </div>
 
-      <div class="col-md-6 col-12">
+      <div class="col-xl-6 col-12">
         <chart-card title="2015 Sales"
                     sub-title="All products including Taxes"
                     :chart-data="activityChart.data"
@@ -120,23 +99,6 @@ export default {
         }
       ],
       usersChart: {
-        data: {
-          labels: [
-            "9:00AM",
-            "12:00AM",
-            "3:00PM",
-            "6:00PM",
-            "9:00PM",
-            "12:00PM",
-            "3:00AM",
-            "6:00AM"
-          ],
-          series: [
-            [287, 385, 490, 562, 594, 626, 698, 895, 952],
-            [67, 152, 193, 240, 387, 435, 535, 642, 744],
-            [23, 113, 67, 108, 190, 239, 307, 410, 410]
-          ]
-        },
         options: {
           low: 0,
           high: 1000,
@@ -180,15 +142,27 @@ export default {
           },
           height: "245px"
         }
-      },
-      preferencesChart: {
-        data: {
-          labels: ["62%", "32%", "6%"],
-          series: [62, 32, 6]
-        },
-        options: {}
       }
     };
+  },
+  computed: {
+    drawPieChart() {
+      const labels = [];
+      const series = [];
+      for(const element of this.$store.state.userTransactions) {
+        if(!labels.includes(this.$store.state.categoriesObject[element.category_id].name))
+          labels.push(this.$store.state.categoriesObject[element.category_id].name);
+      }
+      for(const element of labels) {
+        let counter = 0;
+        for(const transaction of this.$store.state.userTransactions) {
+          if(this.$store.state.categoriesObject[transaction.category_id].name === element)
+            counter++;
+        }
+        series.push(counter / this.$store.state.userTransactions.length);
+      }
+      return { labels: labels, series: series};
+    }
   }
 };
 </script>

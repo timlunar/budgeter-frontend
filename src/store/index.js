@@ -20,7 +20,6 @@ export default new Vuex.Store({
     SET_USER_DATA(state, userData) {
       state.user = userData;
       localStorage.setItem('user', JSON.stringify(userData))
-      // !!!!!! ADDING TOKEN TO THE AXIOS HEADER !!!!!!
       axios.defaults.headers.common['Authorization'] = `Bearer ${
           userData.token
       }`
@@ -29,7 +28,6 @@ export default new Vuex.Store({
       localStorage.removeItem('user');
       location.reload();
     },
-    /* TODO --> WRITE PARSE FUNCTIONS FOR THOSE SEGMENTS OF DASHBOARD GUI YOU NEED */
     Parse_user_coupons(state, data) {
       let couponsArray = [];
       for(const element in data)
@@ -42,7 +40,6 @@ export default new Vuex.Store({
       for(const element in data) {
         categoriesObject[data[element].id] = { id: data[element].id, name: data[element].name };
       }
-      console.log(categoriesObject);
       state.categoriesObject = categoriesObject;
     },
     Parse_user_transactions(state, data) {
@@ -52,8 +49,6 @@ export default new Vuex.Store({
           transactionsArray.push(data[element]);
       state.userTransactions = transactionsArray;
     },
-    /* TODO --> PARSE SPECIAL OFFERS */
-    // Parse_special_offers
     Parse_user_specialOffers(state, data) {
       let transactionsArray = [];
       for(const element in data)
@@ -89,11 +84,10 @@ export default new Vuex.Store({
           }
       )
     },
-    /* TODO --> HERE YOU MAKE ALL API REQUESTS IN PURPOSE FOR DASHBOARD */
+    /* DONE --> HERE YOU MAKE ALL API REQUESTS IN PURPOSE FOR DASHBOARD */
     async getUserApiData({commit}) {
-      /* TODO API DATA ABOUT --> SPECIAL OFFERS */
+      /* DONE --> API DATA ABOUT --> SPECIAL OFFERS */
       const specialOffers = await axios.get(`${process.env.VUE_APP_API_HOST}/offers`);
-      console.log(specialOffers.data);
       commit('Parse_user_specialOffers', specialOffers.data);
 
       /* DONE --> API DATA ABOUT --> CATEGORIES */
@@ -107,8 +101,6 @@ export default new Vuex.Store({
       /* DONE --> API DATA ABOUT --> COUPONS */
       const coupons = await axios.get(`${process.env.VUE_APP_API_HOST}/coupons`);
       commit('Parse_user_coupons', coupons.data);
-
-      /* TODO API DATA ABOUT --> USER PROFILE */
     },
 
     /* INSERT FUNCTIONS */
