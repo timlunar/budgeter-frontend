@@ -8,6 +8,7 @@ export default new Vuex.Store({
   state: {
     user: null,
     userCoupons: null,
+    userOffers: null,
     userTransactions: null,
     categoriesObject: null,
     isLoading: false
@@ -50,9 +51,15 @@ export default new Vuex.Store({
         if(data[element].user_id === state.user.user.id)
           transactionsArray.push(data[element]);
       state.userTransactions = transactionsArray;
-    }
+    },
     /* TODO --> PARSE SPECIAL OFFERS */
     // Parse_special_offers
+    Parse_user_specialOffers(state, data) {
+      let transactionsArray = [];
+      for(const element in data)
+        transactionsArray.push(data[element]);
+      state.userOffers = transactionsArray;
+    }
 
   },
   actions: {
@@ -85,6 +92,9 @@ export default new Vuex.Store({
     /* TODO --> HERE YOU MAKE ALL API REQUESTS IN PURPOSE FOR DASHBOARD */
     async getUserApiData({commit}) {
       /* TODO API DATA ABOUT --> SPECIAL OFFERS */
+      const specialOffers = await axios.get(`${process.env.VUE_APP_API_HOST}/offers`);
+      console.log(specialOffers.data);
+      commit('Parse_user_specialOffers', specialOffers.data);
 
       /* DONE --> API DATA ABOUT --> CATEGORIES */
       const categories = await axios.get(`${process.env.VUE_APP_API_HOST}/categories`);
@@ -99,7 +109,6 @@ export default new Vuex.Store({
       commit('Parse_user_coupons', coupons.data);
 
       /* TODO API DATA ABOUT --> USER PROFILE */
-
     },
 
     /* INSERT FUNCTIONS */
@@ -115,8 +124,19 @@ export default new Vuex.Store({
         commit('Parse_user_coupons', coupons.data);
       }
     },
-    /* TODO --> INSERT USER TRANSACTION AXIOS ACTION */
-    // async insertUserTransaction({commit}, insertObject){}
+
+    async insertUserTransaction({commit}, insertObject) {
+      try {
+        await axios.post(`${process.env.VUE_APP_API_HOST}/transactions`, insertObject.payload).then(() => {
+          alert("transaction was successfully added");
+        })
+      } catch (e) {
+        alert("transaction was not added");
+      } finally {
+        const transactions = await axios.get(`${process.env.VUE_APP_API_HOST}/transactions`);
+        commit('Parse_user_transactions', transactions.data);
+      }
+    },
 
     /* UPDATE FUNCTIONS */
     async update_user_coupon({commit}, updateObject) {
@@ -131,9 +151,6 @@ export default new Vuex.Store({
         commit('Parse_user_coupons', coupons.data);
       }
     },
-    /* TODO --> UPDATE USER TRANSACTION AXIOS ACTION */
-    // async updateUserTransaction({commit}, updateObject){}
-
     /* DELETE FUNCTIONS */
     async deleteUserCoupon({commit}, deleteObject) {
       try {
@@ -146,9 +163,19 @@ export default new Vuex.Store({
         const coupons = await axios.get(`${process.env.VUE_APP_API_HOST}/coupons`);
         commit('Parse_user_coupons', coupons.data);
       }
+    },
+    async deleteUserTransaction({commit}, deleteObject){
+      try {
+        await axios.delete(`${process.env.VUE_APP_API_HOST}/transactions/${deleteObject.id}`).then(() => {
+          alert("transaction was successfully deleted");
+        })
+      }catch (e) {
+        alert("transaction was not deleted");
+      } finally {
+        const coupons = await axios.get(`${process.env.VUE_APP_API_HOST}/transactions`);
+        commit('Parse_user_transactions', coupons.data);
+      }
     }
-    /* TODO --> DELETE USER TRANSACTION AXIOS ACTION */
-    // async deleteUserTransaction({commit}, deleteObject){}
   },
   getters: {
     loggedIn(state) {

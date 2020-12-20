@@ -4,7 +4,7 @@
      <div class="col-12">
        <card class="card-plain">
          <div class="table-full-width table-responsive">
-           <paper-table type="hover" :title="table2.title" :sub-title="table2.subTitle" :data="table2.data" :columns="table2.columns" @deleteLine="deleteLine" @updateLine="updateTransaction"></paper-table>
+           <paper-table type="hover" :title="table2.title" :sub-title="table2.subTitle" :data="table2.data" :columns="table2.columns" @deleteLine="deleteLine" @updateLine="fillUpdateTransaction"></paper-table>
          </div>
        </card>
      </div>
@@ -31,7 +31,7 @@
 
             <div class="d-flex flex-column col-12 p-3">
               <label>Description</label>
-              <input v-model="insertDescription" type="text" placeholder="Coupon description">
+              <input v-model="insertDescription" type="text" placeholder="Transaction description">
             </div>
 
             <div class="d-flex flex-column col-12 p-3">
@@ -44,43 +44,24 @@
           </div>
         </div>
       </div>
-      <!--<div class="col-xl-6 col-12">
-        <div class="card card">
-          <div class="card-header">
-            <h5>Edit transaction</h5>
-          </div>
-          <div class="d-flex flex-wrap card-body">
-            <div class="d-flex flex-column col-xl-6 col-12 p-3">
-              <label>Start date</label>
-              <input v-model="startDate" type="text" placeholder="Coupon start date">
-            </div>
-            <div class="d-flex flex-column col-xl-6 col-12 p-3">
-              <label>End date</label>
-              <input v-model="endDate" type="text" placeholder="Coupon end date">
-            </div>
-            <div class="d-flex flex-column col-12 p-3">
-              <label>Description</label>
-              <input v-model="description" type="text" placeholder="Coupon description">
-            </div>
-
-            <button class="btn btn-outline-success mt-3 ml-3" @click="updateLine">Update</button>
-            <button class="btn btn-outline-danger mt-3 ml-5" @click="clearCouponUpdate">Clear</button>
-          </div>
-        </div>
-      </div>-->
     </div>
 
   </div>
 </template>
 <script>
 import PaperTable from "@/components/PaperTable";
-const tableColumns = ["Id", "description", "amount", "expense", "category_id","delete", "update"];
+const tableColumns = ["Id", "description", "amount", "expense", "category_id","delete"];
 
 export default {
   components: { PaperTable },
   data() {
     return {
+      description: "",
+      amount: "",
+      expense: false,
+      category_id: 1,
       insertAmount: 0,
+      transactionValue: "",
       insertCategory: 1,
       insertDescription: "",
       insertExpense: false,
@@ -93,13 +74,35 @@ export default {
     };
   },
   methods: {
-    /* TODO --> ALL THIS FUNCTIONS ARE FOR HANDLING THE FORM */
-    clearTransactionInsert(){},
+    clearTransactionInsert(){
+      this.insertAmount = 0;
+      this.insertCategory = 1;
+      this.insertDescription = "";
+      this.insertExpense = false;
+    },
+
 
     /* TODO --> ALL THIS FUNCTIONS ARE FOR THE AXIOS REQUESTS */
-    async deleteLine() {},
-    async updateTransaction() {},
-    async insertTransaction() {}
+    async deleteLine(value) {
+      await this.$store.dispatch('deleteUserTransaction', { id: value.id });
+    },
+
+   async insertTransaction() {
+      if (this.insertExpense){
+        this.insertExpense = 1;
+      }else{
+        this.insertExpense = 0;
+      }
+      const object = {
+        category_id: this.insertCategory,
+        user_id: this.$store.state.user.user.id,
+        amount: this.insertAmount,
+        expense: this.insertExpense,
+        description: this.insertDescription
+      };
+      await this.$store.dispatch('insertUserTransaction', {payload: object});
+      this.clearTransactionInsert();
+    }
   }
 };
 </script>
