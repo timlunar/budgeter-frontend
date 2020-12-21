@@ -67,33 +67,33 @@ export default {
       statsCards: [
         {
           type: "warning",
-          icon: "ti-server",
-          title: "Capacity",
-          value: "105GB",
+          icon: "ti-wallet",
+          title: "Balance",
+          value: "1000€",
           footerText: "Updated now",
           footerIcon: "ti-reload"
         },
         {
           type: "success",
-          icon: "ti-wallet",
-          title: "Revenue",
-          value: "$1,345",
+          icon: "ti-plus",
+          title: "Income",
+          value: "2000€",
           footerText: "Last day",
           footerIcon: "ti-calendar"
         },
         {
           type: "danger",
-          icon: "ti-pulse",
-          title: "Errors",
-          value: "23",
+          icon: "ti-minus",
+          title: "Expenses",
+          value: "-1000€",
           footerText: "In the last hour",
           footerIcon: "ti-timer"
         },
         {
           type: "info",
-          icon: "ti-twitter-alt",
-          title: "Followers",
-          value: "+45",
+          icon: "ti-server",
+          title: "Transactions",
+          value: "30",
           footerText: "Updated now",
           footerIcon: "ti-reload"
         }
