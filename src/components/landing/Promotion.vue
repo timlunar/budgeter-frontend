@@ -51,7 +51,8 @@
       </div>
     </div>
 
-    <button class="btn btn-outline-success mt-5 mb-5">Create your own Budgeter account</button>
+    <!--<button class="btn btn-outline-success mt-5 mb-5">Create your own Budgeter account</button>-->
+    <router-link to="/login" class="btn btn-outline-success mt-5 mb-5">Create your own Budgeter account</router-link>
 
   </div>
 </template>

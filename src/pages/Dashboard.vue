@@ -1,7 +1,7 @@
 <template>
   <div>
     <!--Stats cards-->
-    <div class="row">
+    <div v-if="statsCards.length > 0" class="row">
       <div class="col-12 col-md-6 col-xl-3" v-for="stats in statsCards" :key="stats.title">
         <stats-card>
           <div class="icon-big text-center" :class="`icon-${stats.type}`" slot="header">
@@ -33,17 +33,13 @@
       </div>
 
       <div class="col-xl-6 col-12">
-        <chart-card title="2015 Sales"
-                    sub-title="All products including Taxes"
+        <chart-card title="Balance for this year"
+                    sub-title="All transactions"
                     :chart-data="activityChart.data"
                     :chart-options="activityChart.options">
           <span slot="footer">
             <i class="ti-check"></i> Data information certified
           </span>
-          <div slot="legend">
-            <i class="fa fa-circle text-info"></i> Tesla Model S
-            <i class="fa fa-circle text-warning"></i> BMW 5 Series
-          </div>
         </chart-card>
       </div>
 

@@ -2,13 +2,16 @@
   <header class="align-items-center fixed-top">
     <b-navbar class="navbar-inside pt-3" toggleable="lg">
       <b-navbar-brand href="#">
+          <router-link to="/" v-scroll-to="'#home'">
           <img src="@/assets/images/iconWallet.png" alt="" style="width:40px;">
           Budgeter
+          </router-link>
       </b-navbar-brand>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
           <router-link to="/" v-scroll-to="'#home'" class="nav-link">Home</router-link>
+          <template v-if="this.$route.name != 'Login'">
           <b-nav-item href="#"
                       v-scroll-to="'#guidelines'">Guidelines</b-nav-item>
           <b-nav-item href="#"
@@ -19,7 +22,7 @@
                       v-scroll-to="'#packages'">Packages</b-nav-item>
           <b-nav-item href="#"
                       v-scroll-to="'#footer'">About us</b-nav-item>
-
+          </template>
           <router-link to="/login" class="btn btn-outline-success btn-navbar nav-link pt-2 ml-3" v-if="$store.state.user == null">Login</router-link>
           <button class="btn btn-outline-success btn-navbar nav-link" v-else @click="logout">Logout</button>
         </b-navbar-nav>

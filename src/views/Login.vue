@@ -21,7 +21,7 @@
           <button class="btn btn-outline-success" @click="authorizeUser">{{ changeButtonName }}</button>
         </div>
         <div class="d-flex flex-wrap justify-content-start col-12 p-0 pt-3">
-          <span>{{ changeLoginBannerText }} <span class="green-text register-account" @click="isLogin = !isLogin">Create new</span></span>
+          <span>{{ changeLoginBannerText }} <span class="green-text register-account" @click="isLogin = !isLogin">{{ changeFormTitleLink }} </span></span>
         </div>
       </div>
     </div>
@@ -54,7 +54,10 @@ name: "Login",
       return this.isLogin ? "Still don't have Budgeter account?" : "Already have Budgeter account?"
     },
     changeFormTitle() {
-      return this.isLogin ? "Login in your free account" : "Create new Budgeter account"
+      return this.isLogin ? "Login in your free account" : "Create new account"
+    },
+    changeFormTitleLink() {
+      return this.isLogin ? "Create new account" : "Login"
     }
   },
   methods: {
@@ -65,7 +68,7 @@ name: "Login",
           password: this.password,
           username: this.username,
           name: this.name
-        }).then(() => { this.$router.push({name: 'dashboard'})})
+        }).then(() => { this.$router.push({name: 'dashboard'}).catch(()=>{})})
             .catch(err => {
               this.error = err.response.data.error
               this.$store.commit("Set_loading");
@@ -74,7 +77,7 @@ name: "Login",
         this.$store.dispatch('login', {
           email: this.email,
           password: this.password
-        }).then(() => { this.$router.push({name: 'dashboard'})})
+        }).then(() => { this.$router.push({name: 'dashboard'}).catch(()=>{})})
             .catch(err => {
               alert("ERROR! Your email or password is not correct." + err);
               this.$store.commit("Set_loading");
