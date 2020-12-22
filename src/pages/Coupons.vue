@@ -2,14 +2,14 @@
     <div class="row">
 
       <div class="col-12 p-3 alert alert-success alert-dismissible fade show" role="alert" v-if="successMessage">
-        <strong>Success!</strong> New transaction was added to the database
+        <strong>Success!</strong> New coupon was added to the database
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
 
       <div class="col-12 p-3 alert alert-danger alert-dismissible fade show" role="alert" v-if="errorMessage">
-        <strong>Error!</strong> New transaction was not added to the database
+        <strong>Error!</strong> New coupon was not added to the database
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

@@ -19,7 +19,7 @@
           <b-nav-item href="#"
                       v-scroll-to="'#promotion'">Feedbacks</b-nav-item>
           <b-nav-item href="#"
-                      v-scroll-to="'#packages'">Packages</b-nav-item>
+                      v-scroll-to="'#packages'">Offers</b-nav-item>
           <b-nav-item href="#"
                       v-scroll-to="'#footer'">About us</b-nav-item>
           </template>
