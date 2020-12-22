@@ -6,9 +6,9 @@
 
           <div class="col-md-6">
             <fg-input type="text"
-                      label="Username"
-                      placeholder="Username"
-                      v-model="user.username"
+                      label="Full Name"
+                      placeholder="Full Name"
+                      v-model="user.firstName"
                       disabled>
             </fg-input>
           </div>
@@ -25,9 +25,9 @@
         <div class="row">
           <div class="col-md-6">
             <fg-input type="text"
-                      label="First Name"
-                      placeholder="First Name"
-                      v-model="user.firstName"
+                      label="Username"
+                      placeholder="Username"
+                      v-model="user.username"
                       disabled>
             </fg-input>
           </div>

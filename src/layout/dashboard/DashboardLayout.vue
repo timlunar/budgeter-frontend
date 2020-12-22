@@ -9,7 +9,7 @@
           <sidebar-link to="/transactions" name="Transactions" icon="ti-wallet"/>
           <sidebar-link to="/coupons" name="Coupons" icon="ti-credit-card"/>
           <sidebar-link to="/user-profile" name="User profile" icon="ti-user"/>
-          <sidebar-link to="/" name="button"><button class="btn btn-outline-success btn-navbar nav-link" @click="logout">Logout</button></sidebar-link>
+          <sidebar-link to="/" name="button"><button class="col-12 btn btn-outline-success btn-navbar nav-link" @click="logout">Logout</button></sidebar-link>
         </template>
       </side-bar>
       <div class="main-panel">

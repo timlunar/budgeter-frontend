@@ -28,8 +28,20 @@ Vue.component("vueper-slide", VueperSlide);
 Vue.use(VueScrollTo);
 
 Vue.use(BootstrapVue);
-//Vue.use(axios);
 Vue.config.productionTip = false;
+
+/* VEE VALIDATE */
+import { ValidationObserver, ValidationProvider, extend } from "vee-validate";
+import { email, required, numeric, max, min } from "vee-validate/dist/rules";
+
+Vue.component("ValidationProvider", ValidationProvider);
+Vue.component("ValidationObserver", ValidationObserver);
+extend("email", email);
+extend("required", required);
+extend("number", numeric);
+extend("max", max);
+extend("min", min);
+
 
 AOS.init({
   // Global settings:

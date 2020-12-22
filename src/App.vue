@@ -55,6 +55,9 @@ import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer";
 import Loader from "@/components/gadgets/Loader";
 export default {
-  components: {Loader, Footer, Navbar}
+  components: {Loader, Footer, Navbar},
+  async mounted() {
+    await this.$store.dispatch('get_special_offer');
+  }
 }
 </script>

@@ -103,3 +103,22 @@ button, .btn, .form-control, input, select {
 .bt-packages {
   margin: 10rem 0;
 }
+
+.alert-success {
+  background-color: $promotion-user-names !important;
+  color: #F1EAE0 !important;
+}
+
+.bt-offer {
+  font-size: 1.3rem;
+}
+
+.red-stats {
+  background-color: rgba(255, 76, 64, 0.5) !important;
+  .stats{
+    color: black !important;
+  }
+  .icon-warning {
+    color: black !important;
+  }
+}

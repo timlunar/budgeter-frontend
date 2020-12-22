@@ -1,15 +1,16 @@
 <template>
   <footer class="d-flex flex-wrap justify-content-center col-12 p-0 pt-5" id="footer">
     <div class="d-flex flex-column align-items-center col-xl-3 col-md-4 col-12">
-      <h6 class="green-text pt-xl-0 pt-5">ABOUT</h6>
+      <router-link to="/" v-scroll-to="'#home'" class="pt-xl-0 pt-5">
+        <img src="@/assets/images/iconWallet.png" alt="" style="width:60px;">
+        <span class="pl-2" style="font-size: 20px;">Budgeter</span>
+      </router-link>
+    </div>
+    <div class="d-flex flex-column align-items-center col-xl-3 col-md-4 col-12 pt-xl-0 pt-3">
+      <h6 class="green-text pt-xl-0 pt-5">ABOUT US</h6>
       <span>Budgeter Inc.</span>
       <span>budgeter@gmail.com</span>
       <span>Ljubljana, Slovenia</span>
-    </div>
-    <div class="d-flex flex-column align-items-center col-xl-3 col-md-4 col-12 pt-xl-0 pt-3">
-      <h6 class="green-text pt-xl-0 pt-5">RESOURCES</h6>
-      <span>Budgeter</span>
-      <span>Budgeter</span>
     </div>
     <div class="d-flex flex-column align-items-center col-xl-3 col-md-4 col-12 pt-xl-0 pt-3 pb-5">
       <h6 class="green-text pt-xl-0 pt-5">FOLLOW US</h6>

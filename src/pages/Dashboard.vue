@@ -3,8 +3,8 @@
     <!--Stats cards-->
     <div v-if="statsCards.length > 0" class="row">
       <div class="col-12 col-md-6 col-xl-3" v-for="stats in statsCards" :key="stats.title">
-        <stats-card>
-          <div class="icon-big text-center" :class="`icon-${stats.type}`" slot="header">
+        <stats-card :class="{ 'red-stats': (stats.title === 'Balance') && (($store.state.transactionIncome - $store.state.transactionExpense) < 0) }">
+          <div class="icon-big" :class="`icon-${stats.type}`" slot="header">
             <i :class="stats.icon"></i>
           </div>
           <div class="numbers" slot="content">
@@ -35,7 +35,7 @@
       <div class="col-xl-6 col-12">
         <chart-card title="Balance for this year"
                     sub-title="All transactions"
-                    :chart-data="activityChart.data"
+                    :chart-data="drawIncomeExpenseLine"
                     :chart-options="activityChart.options">
           <span slot="footer">
             <i class="ti-check"></i> Data information certified
@@ -55,17 +55,15 @@ export default {
     StatsCard,
     ChartCard
   },
-  /**
-   * Chart data used to render stats, charts. Should be replaced with server data
-   */
   data() {
     return {
+      expensesValue: 0,
       statsCards: [
         {
           type: "warning",
           icon: "ti-wallet",
           title: "Balance",
-          value: "1000€",
+          value: `${(this.$store.state.transactionIncome) - (this.$store.state.transactionExpense)} €`,
           footerText: "Updated now",
           footerIcon: "ti-reload"
         },
@@ -73,7 +71,7 @@ export default {
           type: "success",
           icon: "ti-plus",
           title: "Income",
-          value: "2000€",
+          value: `${this.$store.state.transactionIncome} €`,
           footerText: "Last day",
           footerIcon: "ti-calendar"
         },
@@ -81,7 +79,7 @@ export default {
           type: "danger",
           icon: "ti-minus",
           title: "Expenses",
-          value: "-1000€",
+          value: `${this.$store.state.transactionExpense} €`,
           footerText: "In the last hour",
           footerIcon: "ti-timer"
         },
@@ -89,26 +87,15 @@ export default {
           type: "info",
           icon: "ti-server",
           title: "Transactions",
-          value: "30",
-          footerText: "Updated now",
+          value: this.$store.state.userTransactions.length,
+          footerText: "Number of transactions",
           footerIcon: "ti-reload"
         }
       ],
       usersChart: {
-        options: {
-          low: 0,
-          high: 1000,
-          showArea: true,
-          height: "245px",
-          axisX: {
-            showGrid: false
-          },
           lineSmooth: Chartist.Interpolation.simple({
             divisor: 3
-          }),
-          showLine: true,
-          showPoint: false
-        }
+          })
       },
       activityChart: {
         data: {
@@ -158,6 +145,19 @@ export default {
         series.push(counter / this.$store.state.userTransactions.length);
       }
       return { labels: labels, series: series};
+    },
+    drawIncomeExpenseLine() {
+      const labels = ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      const seriesIncome = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+      const seriesExpense = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+      for(const element of this.$store.state.userTransactions) {
+        const date = parseInt(element.created_at.split("-")[1]);
+        if(element.expense === 1)
+          seriesExpense[date-1] += element.amount;
+        else
+          seriesIncome[date-1] += element.amount;
+      }
+      return {labels: labels, series: [seriesIncome, seriesExpense]};
     }
   }
 };
